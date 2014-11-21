@@ -8,6 +8,7 @@ if (DEFINED ENV{OPENCV_DIR})
   list(APPEND LIB_DIRS ${OPENCV_DIR}/lib)
 endif (DEFINED ENV{OPENCV_DIR})
 
+include_directories(${CURRENT_SOURCE_DIR})
 include_directories(${INC_DIRS})
 link_directories(${LIB_DIRS})
 
@@ -18,6 +19,7 @@ endif (${CMAKE_COMPILER_IS_GNUCXX})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPENMP_FLAG} -O3")
 
 set(SRC_FILES CmFile.cpp CmShow.cpp DataSetVOC.cpp FilterTIG.cpp Objectness.cpp stdafx.cpp)
-add_library(objectness ${SRC_FILES})
+add_library(objectness SHARED ${SRC_FILES})
 add_executable(${PROJECT_NAME} ${SRC_FILES} Main.cpp)
 target_link_libraries(${PROJECT_NAME} opencv_highgui opencv_core opencv_imgproc liblinear blas)
+pods_install_libraries(objectness)
