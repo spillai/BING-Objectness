@@ -715,6 +715,8 @@ void Objectness::getObjBndBoxesForTestsFast(vector<vector<Vec4i> > &_boxesTests,
 	loadTrainedModel();
 	illustrate();
 
+        printf("Start predicting\n");
+        return;
 
 	const int TestNum = _voc.testSet.size();
 	vecM imgs3u;
@@ -733,7 +735,7 @@ void Objectness::getObjBndBoxesForTestsFast(vector<vector<Vec4i> > &_boxesTests,
 		}
 	}
 
-	printf("Start predicting\n");
+
 	CmTimer tm("Predict");
 	tm.Start();
 
